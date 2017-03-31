@@ -1,8 +1,11 @@
 var pingPong = function (number){
-
-//create array from 1 to user input
+//display warning if enterd value is not numeric, else create array from 1 to user input
 var numberInd;
 var numberArr = [];
+if ( $.isNumeric(number) === false){
+  alert("Please enter integer number");
+}
+else{
 for (i=0; i < number; i++){
   numberInd = i+1;
   numberArr.push(numberInd);
@@ -25,6 +28,7 @@ for (i=0; i<numberArr.length; i++){
 //display result as ul
 for (i=0;i<numberArr.length; i++){
 $("ul#game").append("<li>" + numberArr[i] + "</li>");
+}
 }
 }
 

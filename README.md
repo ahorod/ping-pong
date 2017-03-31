@@ -3,6 +3,10 @@
 #### By Anna Horodetska
 
 ## This is a webpage that plays ping pong according to specifications
+* Displays warning if user inputs non numeric value.
+  Example Input: abc
+  Example Output: "Please enter integer number"
+  
 * Counts up to the provided number.
   Example Input: 16
   Example Output: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
@@ -24,7 +28,7 @@
   Example Output: [1,2]
   Example Input: 3
   Example Output: [1,2,3]
-  
+
 ## Setup
 * Clone this repository https://github.com/ahorod/ping-pong
 * Open index.html in browser
