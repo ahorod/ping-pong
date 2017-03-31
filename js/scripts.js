@@ -1,4 +1,5 @@
 var pingPong = function (number){
+
 //create array from 1 to user input
 var numberInd;
 var numberArr = [];
@@ -21,16 +22,20 @@ for (i=0; i<numberArr.length; i++){
   }
 }
   console.log(numberArr);
-
-
+//display result as ul
+for (i=0;i<numberArr.length; i++){
+$("ul#game").append("<li>" + numberArr[i] + "</li>");
+}
 }
 
 $(document).ready(function() {
+
     $("form#ping-pong").submit(function(event) {
         event.preventDefault();
+        // clear result before adding new
+        $("#game").html("");
         var number = parseInt($("#input").val());
-        var result = pingPong(number);
-        $("#game").text(result);
-
+        pingPong(number);
+        $("#result").show();
     });
 });
