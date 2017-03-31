@@ -1,3 +1,23 @@
-/*#result {
-  display: none;
-}*/
+.panel-info-custom {
+background: green;
+
+}
+.panel-form{
+background: #97e5ad;
+
+}
+.panel-user{
+background: #97e5ad;
+
+}
+body {
+  background-color: #c6efd2;
+}
+
+h1 {
+  text-align: center;
+}
+.btn{
+  background-color: #043011;
+  color: white;
+}
