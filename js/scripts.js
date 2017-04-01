@@ -1,11 +1,6 @@
-var numberArr = [];
-var countPing = 0;
-var countPong = 0;
-
 var basic = function(number) {
     //display warning if enterd value is not numeric, else create array from 1 to user input
     var numberInd;
-    // clears global var before executing function, after button click output is refreshesd
     var numberArr = [];
     if ($.isNumeric(number) === false) {
         alert("Please enter integer number");
@@ -34,6 +29,8 @@ var basic = function(number) {
     return numberArr;
 }
 var score = function(numberArr) {
+  var countPing = 0;
+  var countPong = 0;
 
     for (i = 0; i < numberArr.length; i++) {
         if (numberArr[i] === "ping") {
@@ -54,56 +51,48 @@ var score = function(numberArr) {
     } else if (countPong > countPing) {
         alert("Pong win");
     }
-    return countPing, countPong;
-    $("#ping-score").text(countPing);
-    $("#pong-score").text(countPong);
+    return [countPing, countPong];
 }
 
 var pingPongReverse = function(number) {
-    numberArr = basic(number);
+    var numberArr = basic(number);
     numberArr.reverse();
-    //display result as ul
-    for (i = 0; i < numberArr.length; i++) {
-        $("ul#game").append("<li>" + numberArr[i] + "</li>");
-    }
-    score(numberArr);
-    return countPing, countPong;
+    var countArr = score(numberArr);
+    return [numberArr, countArr];
 }
 
 var pingPong = function(number) {
-    numberArr = basic(number);
-    //display result as ul
-    for (i = 0; i < numberArr.length; i++) {
-        $("ul#game").append("<li>" + numberArr[i] + "</li>");
-    }
-    score(numberArr);
-    return countPing, countPong;
+    var numberArr = basic(number);
+    var countArr = score(numberArr);
+    return [numberArr, countArr];
 }
 
-
-
 $(document).ready(function() {
+    var showResult = function(result){
+      var numberArr = result[0];
+      for (i = 0; i < numberArr.length; i++) {
+          $("ul#game").append("<li>" + numberArr[i] + "</li>");
+      }
+      var countPing = result[1][0];
+      var countPong = result[1][1];
+      $("#ping-score").text(countPing);
+      $("#pong-score").text(countPong);
+    }
+
     $("button#play").click(function(event) {
         event.preventDefault();
         // clear result before adding new
         $("#game").html("");
         var number = parseInt($("#input").val());
-        pingPong(number);
-        //
-        // $("#result").show();
-        // $("#score-ping").text(countPing);
-        // $("#score-pong").text(countPong);
+        var result = pingPong(number);
+        showResult(result);
     });
     $("button#reverse").click(function(event) {
         event.preventDefault();
         // clear result before adding new
         $("#game").html("");
         var number = parseInt($("#input").val());
-        pingPongReverse(number);
-
-        // $("#result").show();
-        // $("#ping-score").text(countPing);
-        // $("#pong-score").text(countPong);
+        var result = pingPongReverse(number);
+        showResult(result);
     });
-
 });
